@@ -12,14 +12,15 @@
         name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
         state: present
 
-    - name: Install NodeJS
-      ansible.builtin.package:
-        name:
-          - nodejs
-        state: latest
-
     - name: Install Node Packages
       block:
+        - name: Install NodeJS
+          ansible.builtin.package:
+            name:
+              - nodejs
+              - mysql-server
+            state: latest
+            
         - name: installing express as backend 
           community.general.npm:
             name: express
@@ -35,6 +36,9 @@
             cd "{{ flint_path }}"
             npm install create-react-app
             create-react-app "{{ flint_path }}/web"
+            cd "{{ flint_path }}/web/src"
+            shopt -s extglob
+            rm -v !("index.css")
             
     - name: Restful Folder Create
       ansible.builtin.file:
