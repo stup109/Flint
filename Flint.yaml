@@ -7,31 +7,31 @@
     flint_path: "/root/Flint"
 
   tasks:
-    - name: Add NodeJS Yum Repository
+    - name: Adding Yum Repository
       ansible.builtin.yum:
         name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
         state: present
 
-    - name: Install Node Packages
+    - name: Installation
       block:
-        - name: Install NodeJS
+        - name: * installing nodejs, mysql
           ansible.builtin.package:
             name:
               - nodejs
               - mysql-server
             state: latest
             
-        - name: installing express as backend 
+        - name: * installing express module
           community.general.npm:
             name: express
             path: "{{ flint_path }}"
 
-        - name: installing package for the connection to mysql
+        - name: * installing mysql module
           community.general.npm:
             name: mysql
             path: "{{ flint_path }}"
 
-        - name: installing create-react-app as frontend
+        - name: * installing create-react-app
           ansible.builtin.shell: |
             cd "{{ flint_path }}"
             npm install create-react-app
@@ -39,10 +39,12 @@
             cd "{{ flint_path }}/web/src"
             shopt -s extglob
             rm -v !("index.css")
-            
-    - name: Restful Folder Create
-      ansible.builtin.file:
-        path: "{{ flint_path }}/restful"
-        state: directory
-        mode: '0755'
+
+    - name: Generating Restful Api
+      block:
+      - name: Restful Folder Create
+        ansible.builtin.file:
+          path: "{{ flint_path }}/restful"
+          state: directory
+          mode: '0755'
 ...
