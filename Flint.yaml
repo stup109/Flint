@@ -38,12 +38,12 @@
 
         - name: installing create-react-app
           ansible.builtin.shell: |
-            shopt -s extglob
             cd "{{ flint_path }}"
             wget https://raw.githubusercontent.com/stup109/Flint/main/Source/index.js
             npm install create-react-app
             create-react-app "{{ flint_path }}/web"
             cd "{{ flint_path }}/web/src"
+            shopt -s extglob
             rm -v !("index.css")
             wget https://raw.githubusercontent.com/stup109/Flint/main/Source/web/src/index.js
             
