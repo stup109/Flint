@@ -32,12 +32,13 @@
 
         - name: installing create-react-app as frontend
           ansible.builtin.shell: |
+            cd "{{ flint_path }}"
             npm install create-react-app
-            create-react-app "{{ flint_path }}"/web
-
+            create-react-app "{{ flint_path }}/web"
+            
     - name: Restful Folder Create
       ansible.builtin.file:
-        path: "{{ flint_path }}"/Restful
+        path: "{{ flint_path }}/Restful"
         state: directory
         mode: '0755'
 ...
