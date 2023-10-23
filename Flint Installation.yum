@@ -1,0 +1,16 @@
+- name: Flint Installation
+  hosts: localhost
+  become: yes
+  vars:
+    nodejs_version: 21
+
+  tasks:
+    - name: Add NodeJS Yum Repository
+      ansible.builtin.yum:
+        name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
+        state: present
+
+    - name: Install NodeJS
+      ansible.builtin.package:
+        name: nodejs
+        state: present
