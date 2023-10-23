@@ -1,8 +1,10 @@
+---
 - name: Flint Installation
   hosts: localhost
   become: yes
   vars:
     nodejs_version: 21
+    flint_path: "/root/Flint"
 
   tasks:
     - name: Add NodeJS Yum Repository
@@ -12,5 +14,30 @@
 
     - name: Install NodeJS
       ansible.builtin.package:
-        name: nodejs
-        state: present
+        name:
+          - nodejs
+        state: latest
+
+    - name: Install Node Packages
+      block:
+        - name: installing express as backend 
+          community.general.npm:
+            name: express
+            path: "{{ flint_path }}"
+
+        - name: installing package for the connection to mysql
+          community.general.npm:
+            name: mysql
+            path: "{{ flint_path }}"
+
+        - name: installing create-react-app as frontend
+          ansible.builtin.shell: |
+            npm install create-react-app
+            create-react-app "{{ flint_path }}"/web
+
+    - name: Restful Folder Create
+      ansible.builtin.file:
+        path: "{{ flint_path }}"/Restful
+        state: directory
+        mode: '0755'
+...
