@@ -14,24 +14,24 @@
 
     - name: Installation
       block:
-        - name: * installing nodejs, mysql
+        - name: installing nodejs, mysql
           ansible.builtin.package:
             name:
               - nodejs
               - mysql-server
             state: latest
             
-        - name: * installing express module
+        - name: installing express module
           community.general.npm:
             name: express
             path: "{{ flint_path }}"
 
-        - name: * installing mysql module
+        - name: installing mysql module
           community.general.npm:
             name: mysql
             path: "{{ flint_path }}"
 
-        - name: * installing create-react-app
+        - name: installing create-react-app
           ansible.builtin.shell: |
             shopt -s extglob
             cd "{{ flint_path }}"
