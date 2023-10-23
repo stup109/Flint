@@ -42,7 +42,7 @@
             
     - name: Restful Folder Create
       ansible.builtin.file:
-        path: "{{ flint_path }}/Restful"
+        path: "{{ flint_path }}/restful"
         state: directory
         mode: '0755'
 ...
