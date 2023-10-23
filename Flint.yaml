@@ -14,12 +14,17 @@
 
     - name: Installation
       block:
-        - name: installing nodejs, mysql
+        - name: installing nodejs, mysql, python3, pip
           ansible.builtin.package:
             name:
+              - python3
+              - python3-pip
               - nodejs
               - mysql-server
             state: latest
+
+        - name: installing openai
+          ansible.builtin.shell: pip3 install openai
             
         - name: installing express module
           community.general.npm:
