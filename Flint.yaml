@@ -37,10 +37,14 @@
             name: mysql
             path: "{{ flint_path }}"
 
-        - name: installing create-react-app
+        - name: installing express-app
           ansible.builtin.shell: |
             cd "{{ flint_path }}"
             wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/index.js
+            wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/index.ejs
+
+        - name: installing create-react-app
+          ansible.builtin.shell: |
             npm install create-react-app
             create-react-app "{{ flint_path }}/web"
             cd "{{ flint_path }}/web/src"
