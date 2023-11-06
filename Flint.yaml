@@ -57,13 +57,6 @@
             cd "{{ flint_path }}/web/src"
             shopt -s extglob
             rm -v !("index.css")
-            wget https://raw.githubusercontent.com/stup109/Flint/main/App/web/src/index.js
-            
-    - name: Generating Restful Api
-      block:
-      - name: Restful Folder Create
-        ansible.builtin.file:
-          path: "{{ flint_path }}/restful"
-          state: directory
-          mode: '0755'
+            # GET FOLDER
+
 ...
