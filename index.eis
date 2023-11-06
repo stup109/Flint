@@ -1,0 +1,15 @@
+<!-- Under path-to-index.js/views -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Change Local Username</title>
+  </head>
+  <body>
+    <h1>Current Username: <%= username %></h1>
+    <form action="/updateUsername" method="post">
+      <label for="username">New Username:</label>
+      <input type="text" id="username" name="username" required>
+      <button type="submit">Update Username</button>
+    </form>
+  </body>
+</html>
