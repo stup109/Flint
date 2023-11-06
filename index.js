@@ -14,9 +14,14 @@ app.get('/', (req, res) => {
   res.render('index', { hostname });
 });
 
+
+// get hostname --------------------------------------------------
+
 app.post('/updateHostname', (req, res) => {
+  
   const newHostname = req.body.hostname;
   hostname = newHostname;
+  
   // fs.writeFile('/etc/hostname', hostname, (err) => {
   fs.writeFile('test.txt', hostname, (err) => {
     if (err) {
@@ -27,7 +32,11 @@ app.post('/updateHostname', (req, res) => {
       res.redirect('/');
     }
   });
+  
 });
+
+// ----------
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
