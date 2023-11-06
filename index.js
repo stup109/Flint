@@ -22,19 +22,7 @@ app.post('/updateHostname', (req, res) => {
   const path_hostname = "/etc/hostname";
   const new_hostname = req.body.hostname;
   hostname = new_hostname;
-  // ----- change hostname ---------------------------------------------
-  // fs.writeFile('test.txt', hostname, (err) => {
-  //   if (err) {
-  //     console.error('Error writing to file:', err);
-  //     res.status(500).send('Error writing to file');
-  //   } else {
-  //     console.log('Hostname has been updated.');
-  //     res.redirect('/');
-  //   }
-  // });
-  // Execute a shell command
-  
-  exec( "hostnamectl hostname ${hostname}" , (error, stdout, stderr) => {
+  exec(`hostnamectl set-hostname ${hostname}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error.message}`);
       return;
@@ -44,9 +32,15 @@ app.post('/updateHostname', (req, res) => {
       return;
     }
     console.log(`stdout:\n${stdout}`);
+
+    // Write the new hostname to the file
+    fs.writeFile(path_hostname, hostname, function (err) {
+      if (err) return console.log(err);
+      console.log('New hostname saved successfully.');
+    });
   });
 
-  
+  res.redirect('/');
 });
 
 // ----------
