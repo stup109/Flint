@@ -5,7 +5,7 @@
   vars:
     nodejs_version: 21
     flint_path: "/root/Flint"
-    nodejs_path:""
+    nodejs_path:"App"
 
   tasks:
     - name: Adding Yum Repository
