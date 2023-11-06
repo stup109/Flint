@@ -48,14 +48,14 @@
             wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/index.js
             wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/index.ejs
 
-        - name: installing create-react-app
-          ansible.builtin.shell: |
-            npm install create-react-app
-            create-react-app "{{ flint_path }}/web"
-            cd "{{ flint_path }}/web/src"
-            shopt -s extglob
-            rm -v !("index.css")
-            wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/web/src/index.js
+        # - name: installing create-react-app
+        #   ansible.builtin.shell: |
+        #     npm install create-react-app
+        #     create-react-app "{{ flint_path }}/web"
+        #     cd "{{ flint_path }}/web/src"
+        #     shopt -s extglob
+        #     rm -v !("index.css")
+        #     wget https://raw.githubusercontent.com/stup109/Flint/main/{{ nodejs_path }}/web/src/index.js
             
     - name: Generating Restful Api
       block:
