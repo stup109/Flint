@@ -15,14 +15,12 @@ app.get('/', (req, res) => {
   res.render('index', { hostname });
 });
 
-
-// ----- get and set hostname ---------------------------------------------
-
 app.post('/updateHostname', (req, res) => {
   const path_hostname = "/etc/hostname";
   const new_hostname = req.body.hostname;
-  hostname = new_hostname;
-  exec(`hostnamectl set-hostname ${hostname}`, (error, stdout, stderr) => {
+  
+  // Executing hostnamectl command
+  exec(`hostnamectl set-hostname ${new_hostname}`, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error.message}`);
       return;
@@ -31,19 +29,17 @@ app.post('/updateHostname', (req, res) => {
       console.error(`stderr: ${stderr}`);
       return;
     }
-    console.log(`stdout:\n${stdout}`);
+    console.log(`Hostname has been set to: ${new_hostname}`);
+  });
 
-    // Write the new hostname to the file
-    fs.writeFile(path_hostname, hostname, function (err) {
-      if (err) return console.log(err);
-      console.log('New hostname saved successfully.');
-    });
+  // Writing new hostname to the file
+  fs.writeFileSync(path_hostname, new_hostname, (err) => {
+    if (err) throw err;
+    console.log('The hostname has been updated.');
   });
 
   res.redirect('/');
 });
-
-// ----------
 
 
 const PORT = 3000;
