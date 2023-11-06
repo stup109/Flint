@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { exec } = require('child_process');
 const os = require('os');
 const fs = require('fs');
 const app = express();
@@ -23,15 +24,28 @@ app.post('/updateHostname', (req, res) => {
   hostname = newHostname;
   
   // ----- change hostname ---------------------------------------------
-  fs.writeFile('test.txt', hostname, (err) => {
-    if (err) {
-      console.error('Error writing to file:', err);
-      res.status(500).send('Error writing to file');
-    } else {
-      console.log('Hostname has been updated.');
-      res.redirect('/');
+  // fs.writeFile('test.txt', hostname, (err) => {
+  //   if (err) {
+  //     console.error('Error writing to file:', err);
+  //     res.status(500).send('Error writing to file');
+  //   } else {
+  //     console.log('Hostname has been updated.');
+  //     res.redirect('/');
+  //   }
+  // });
+  // Execute a shell command
+  exec('ls -l', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return;
     }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout:\n${stdout}`);
   });
+
   
 });
 
