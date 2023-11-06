@@ -4,9 +4,16 @@ const path = require('path');
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+app.set('view engine', 'ejs')
+
+app.get('/', (req, res) => ) {
+    console.log("Nothing")
+    res.render("index")
+})
+
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/index.html'));
+// });
 
 app.post('/change-username', function(req, res) {
     const newUsername = req.body.username;
