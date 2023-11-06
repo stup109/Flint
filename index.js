@@ -1,26 +1,33 @@
-// dashboard application
-
 const express = require('express');
+const bodyParser = require('body-parser');
+const fs = require('fs');
 const app = express();
-const path = require('path');
 
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
-app.set('view engine', 'ejs')
+let username = 'DefaultUser';
 
-app.get('/', (req, res) => ) {
-    console.log("Nothing")
-    res.render("index")
-})
-
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/index.html'));
-// });
-
-app.post('/change-username', function(req, res) {
-    const newUsername = req.body.username;
-    // Do something with the new username
-    res.send(`Username changed to ${newUsername}`);
+app.get('/', (req, res) => {
+  res.render('index', { username });
 });
 
-app.listen(3000);
+app.post('/updateUsername', (req, res) => {
+  const newUsername = req.body.username;
+  username = newUsername;
+  fs.writeFile('username.txt', username, (err) => {
+    if (err) {
+      console.error('Error writing to file:', err);
+      res.status(500).send('Error writing to file');
+    } else {
+      console.log('Username has been updated.');
+      res.redirect('/');
+    }
+  });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
