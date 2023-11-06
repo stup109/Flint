@@ -45,9 +45,7 @@
           ansible.builtin.shell: |
             cd "{{ flint_path }}"
             wget https://raw.githubusercontent.com/stup109/Flint/main/index.js
-            mkdir views
             wget https://raw.githubusercontent.com/stup109/Flint/main/index.ejs
-            mv index.ejs views/
         
         - name: installing create-react-app
           ansible.builtin.shell: |            
