@@ -41,21 +41,21 @@ app.post('/updateHostname', (req, res) => {
   res.redirect('/');
 });
 
-app.post('/<Function Name>', (req, res) => {
-  exec(`<command>`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`<Console Log Message>`);
-  });
+// app.post('/<Function Name>', (req, res) => {
+//   exec(`<command>`, (error, stdout, stderr) => {
+//     if (error) {
+//       console.error(`Error: ${error.message}`);
+//       return;
+//     }
+//     if (stderr) {
+//       console.error(`stderr: ${stderr}`);
+//       return;
+//     }
+//     console.log(`<Console Log Message>`);
+//   });
 
-  res.redirect('/');
-});
+//   res.redirect('/');
+// });
 
 
 const PORT = 3000;
