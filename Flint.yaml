@@ -12,6 +12,7 @@
       ansible.builtin.yum:
         name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
         state: present
+        validate_certs: no
 
     - name: Installation
       block:
