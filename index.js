@@ -15,14 +15,14 @@ app.get('/', (req, res) => {
 });
 
 
-// get hostname --------------------------------------------------
+// ----- get and set hostname ---------------------------------------------
 
 app.post('/updateHostname', (req, res) => {
-  
+  const path_hostname = "/etc/hostname";
   const newHostname = req.body.hostname;
   hostname = newHostname;
   
-  // fs.writeFile('/etc/hostname', hostname, (err) => {
+  // ----- change hostname ---------------------------------------------
   fs.writeFile('test.txt', hostname, (err) => {
     if (err) {
       console.error('Error writing to file:', err);
