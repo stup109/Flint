@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 app.post('/updateHostname', (req, res) => {
   const path_hostname = "/etc/hostname";
   const new_hostname = req.body.hostname;
-  
+  hostname = new_hostname;
   // ----- change hostname ---------------------------------------------
   // fs.writeFile('test.txt', hostname, (err) => {
   //   if (err) {
@@ -34,7 +34,7 @@ app.post('/updateHostname', (req, res) => {
   // });
   // Execute a shell command
   
-  exec( "hostnamectl hostname ${new_hostname}" , (error, stdout, stderr) => {
+  exec( "hostnamectl hostname ${hostname}" , (error, stdout, stderr) => {
     if (error) {
       console.error(`Error: ${error.message}`);
       return;
