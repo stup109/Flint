@@ -53,10 +53,10 @@
           ansible.builtin.shell: |
             cd "{{ flint_path }}"
             npm install create-react-app
-            create-react-app "{{ flint_path }}/web"
-            cd "{{ flint_path }}/web/src"
-            shopt -s extglob
-            rm -v !("index.css")
             # GET FOLDER
+            # create-react-app "{{ flint_path }}/web"
+            # cd "{{ flint_path }}/web/src"
+            # shopt -s extglob
+            # rm -v !("index.css")
 
 ...
