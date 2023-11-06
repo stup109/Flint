@@ -17,7 +17,8 @@ app.get('/', (req, res) => {
 app.post('/updateHostname', (req, res) => {
   const newHostname = req.body.hostname;
   hostname = newHostname;
-  fs.writeFile('/etc/hostname', hostname, (err) => {
+  // fs.writeFile('/etc/hostname', hostname, (err) => {
+  fs.writeFile('test.txt', hostname, (err) => {
     if (err) {
       console.error('Error writing to file:', err);
       res.status(500).send('Error writing to file');
