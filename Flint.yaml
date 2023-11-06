@@ -32,6 +32,11 @@
             name: express
             path: "{{ flint_path }}"
 
+        - name: installing embedded javascript
+          community.general.npm:
+            name: ejs
+            path: "{{ flint_path }}"
+
         - name: installing mysql module
           community.general.npm:
             name: mysql
