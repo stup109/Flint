@@ -7,11 +7,23 @@
     flint_path: "/root/Flint"
 
   tasks:
+    - name: Installing Git
+      ansible.builtin.yum:
+        name: git
+        state: present
+
     - name: Adding Yum Repository
       ansible.builtin.yum:
         name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/nodistro/repo/nodesource-release-nodistro-1.noarch.rpm"
         state: present
         validate_certs: no
+
+    - name: Create App Folder
+      ansible.builtin.shell: |
+        git clone https://github.com/stup109/Flint.git flint_cp
+        mkdir "{{ flint_path }}"
+        mkdir "{{ flint_path }}"/server
+        mkdir "{{ flint_path }}"/client
 
     - name: Installation
       block:
@@ -23,40 +35,30 @@
               - mysql-server
             state: latest
 
-        - name: installing openai
-          ansible.builtin.shell: pip3 install openai
+        - name: installing gcc python3 openai flask
+          ansible.builtin.shell: |
+            yum  install gcc python3-devel mysql-devel pkgconfig mysqlclient -y
+            pip3 install -U openai Flask flask-cors flask-mysqldb
             
-        - name: installing express module
-          community.general.npm:
-            name: express
-            path: "{{ flint_path }}"
-
-        - name: installing embedded javascript
-          community.general.npm:
-            name: ejs
-            path: "{{ flint_path }}"
-
         - name: installing mysql module
           community.general.npm:
             name: mysql
             path: "{{ flint_path }}"
-
-        - name: installing express js and dashboard
-          ansible.builtin.shell: |
-            cd "{{ flint_path }}"
-            wget https://raw.githubusercontent.com/stup109/Flint/main/index.js
-            mkdir views
-            cd views
-            wget https://raw.githubusercontent.com/stup109/Flint/main/index.ejs
             
-        - name: installing react
+        - name: installing and start react
           ansible.builtin.shell: |
             cd "{{ flint_path }}"
-            npm install create-react-app
-            # GET FOLDER
-            # create-react-app "{{ flint_path }}/web"
-            # cd "{{ flint_path }}/web/src"
-            # shopt -s extglob
-            # rm -v !("index.css")
+            cd "{{ flint_path }}"/client
+            npx create-react-app web
+            cd web
+            npm install react-router-dom react-dom
+
+        - name: adding pages
+          ansible.builtin.shell: |
+            cd "{{ flint_path }}"
+            cd ..
+            cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
+            cp flint_cp/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
+            rm -rf flint_cp
 
 ...
