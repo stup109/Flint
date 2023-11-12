@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Home } from './pages/Home.js';
-import {Login} from './pages/Login.js'
-import {GenerateText} from './pages/GenerateText.js'
-import {ChapterInfo} from './pages/ChapterInfo.js'
-import {ChapterTest} from './pages/ChapterTest.js'
-import {UserCourse} from './pages/UserCourse.js'
-import {CourseInfo} from './pages/CourseInfo.js'
-import {AllCourses} from './pages/AllCourses.js'
+import { Home } from './src/Home.js';
+import {Login} from './src/Login.js'
+import {GenerateText} from './src/GenerateText.js'
+import {ChapterInfo} from './src/ChapterInfo.js'
+import {ChapterTest} from './src/ChapterTest.js'
+import {UserCourse} from './src/UserCourse.js'
+import {CourseInfo} from './src/CourseInfo.js'
+import {AllCourses} from './src/AllCourses.js'
 
 
 function App() {
