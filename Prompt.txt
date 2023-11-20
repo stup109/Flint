@@ -15,3 +15,21 @@ E. 評定內容重複量，重複度越高，分數越高，評分後換算為�
  最高分 : 100
 
 我會給予英語文章，請你為每個項目訂下一個確切成績，簡單敘述計算過程，並給我總分。
+
+Scoring Criteria:
+A. Evaluate sentence complexity, convert the score to a percentage.
+B. Evaluate vocabulary difficulty, convert the score to a percentage.
+C. Evaluate grammar accuracy, convert the score to a percentage.
+D. Evaluate thematic relevance, convert the score to a percentage.
+E. Evaluate content repetition; the higher the repetition, the higher the score, convert the score to a percentage.
+
+Total Score = A + B + C + D - E
+
+Scoring Criteria:
+Low Score: Individual item score below 30.
+Fair: Individual item score between 30 and 60.
+Moderate: Individual item score between 60 and 80.
+High: Individual item score above 80.
+Perfect Score: 100
+
+Please provide the English article, and I will assign specific scores for each criterion, briefly describing the calculation process, and then provide the total score.
