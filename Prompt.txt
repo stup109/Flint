@@ -1,7 +1,9 @@
-My students are non-native English speakers and they are just kids so don't make it to difficult for them. Standard:
-  Low: Score below 30.
+My students are non-native English speakers and they are just kids so don't make it to difficult.
+
+Scores:
+  Bad: Score below 30.
   Fair: Score between 30 and 60.
-  Moderate: Score between 60 and 80.
+  GOOD: Score between 60 and 80.
   High: Score above 80.
   Perfect : 100
 
