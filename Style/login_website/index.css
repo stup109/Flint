@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    display: flex;
+    justify-content: space-between ;
+    align-items: center;
+    z-index: 99;
+}
+.logo{
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+.navigation a{
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height:3px;
+    background: #fff;
+    border-radius: 5px;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+}
+.navigation .btnLogin{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+.navigation .btnLogin:hover{
+    background: #fff;
+    color: #162938;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    background: url('background.jpg')no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.wrapper .icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background: transparent;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper{
+    position: relative;
+    width: 400px;
+    height: 490px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);  /*邊框粗細效果*/
+    border-radius: 20px;
+    backdrop-filter: blur(15px);  /*背景霧化效果*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: transform .5s ease, height .2s ease;
+}
+.wrapper.active{
+    height: 400px;
+}
+.wrapper.active-student{
+    height: 600px;
+}
+.wrapper.active-teacher{
+    height: 470px;
+}
+.wrapper.active-login{
+    transform: scale(1);
+}
+
+/*------------------以下是Login以及整體介面配置-------------------------------------------------------------*/
+
+.wrapper .form-box-Login{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+.wrapper.active .form-box-Login{
+    transition: none;
+    transform: translateX(-400px);
+}
+.wrapper.active-student .form-box-Login{
+    transition: none;
+    transform: translateX(-800px);
+}
+.wrapper.active-teacher .form-box-Login{
+    transition: none;
+    transform: translateX(-1200px);
+}
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+.text-box{
+    width: 100%;
+    height: 82%;
+    top: 15%;
+    position: absolute;
+    text-align: center;
+    transform: scale(1);
+    transition: transform .5s ease, height .2s ease;
+}
+.text-box h1 {
+    font-size: 7vw;
+    color: transparent;
+    -webkit-text-stroke: .1px rgba(255,255,255,0.5);
+    background: url(images/back.png);
+    -webkit-background-clip: text;
+    background-position: 0 0;
+
+    animation: fadeIn 5s, back 20s linear infinite;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    animation-delay: 0s, .1s;
+    transition: transform .5s ease, height .2s ease;
+    transition: transform .18s ease;
+    transform: translateY(0);
+}
+@keyframes back {
+    100% {
+        background-position: 2000px 0;
+    }
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+.text-box.active-text  h1{ 
+    transition: transform .18s ease;
+    transform: translateY(-800px);
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+.inputbox label{
+    position: absolute;  /*設定絕對位置*/
+    top: 50%;  /*從頂部偏移50%，其實就是整個欄位的高度*/
+    left: 5px;
+    transform: translateY(-50%);  /*元素在垂直方向上移動-50%。就是相對於欄位自身的高度*/
+    color: #fff;
+    font-size: 1em;  /*設定字體大小*/
+    pointer-events: none;  /*禁止元素接收如點擊和懸停*/
+    transition: .5s;  /*字跳動動畫效果，過度時間為0.5秒*/
+}
+
+/*輸入字會往上跳*/
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label{
+    top: -5px;
+}
+
+.inputbox input{
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding: 0 35px 0 5px;
+    color: #fff;
+}
+
+/*用於刪除Show Hide功能*/
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-reveal {
+    display: none;
+}
+
+
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+.forget{
+    margin: -15px 0 15px;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.forget label input{
+    margin-right: 3px;
+}
+.forget label a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+.forget label a:hover{
+    color: #fff;
+    text-decoration: underline;  /*鼠標移致上面產生效果*/
+}
+.wrapper .button button{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-weight: 600;
+}
+.wrapper .register-link{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.wrapper .register-link p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.wrapper .register-link p a:hover{
+    text-decoration: underline;
+}
+
+
+/*---------------------以下是Registration--------------------------------------------------*/
+
+
+.wrapper .form-box-Register{
+    position: absolute;
+    transform: none;
+    transform: translateX(800px);
+}
+.wrapper.active .form-box-Register{
+    transition: transform .18s ease;
+    transform: translateX(400px);
+}
+.wrapper.active-student .form-box-Register{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+.wrapper.active-teacher .form-box-Register{
+    transition: transform .18s ease;
+    transform: translateX(-400px);
+}
+.login-link2{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.login-link2 p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.login-link2 p a:hover{
+    text-decoration: underline;
+}
+
+
+/*----------------------以下是選擇學生或老師介面-----------------------------------------------------------*/
+
+.form-box-Choose button{
+    border: 2px solid rgba(255,255,255,0.5);  /*邊框粗細效果*/
+    backdrop-filter: blur(15px);  /*背景霧化效果*/
+    margin: 20px 0;
+    width: 100%;
+    height: 90px;
+    border-radius: 40px;
+    background: transparent;
+    color: #fff;
+    text-align: center;
+    outline: none;
+    font-size: 1em;
+    font-weight: 600; 
+}
+.form-box-Choose button:hover{
+    background: #fff;
+    color: #162938;
+    transition: .5s;
+}
+.login-link{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.login-link p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.login-link p a:hover{
+    text-decoration: underline;
+}
+.wrapper .form-box-Choose{
+    position: absolute;
+    transform: none;
+    transform: translateX(400px);
+}
+.wrapper.active .form-box-Choose{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}
+.wrapper.active-student .form-box-Choose{
+    transition: transform .18s ease;
+    transform: translateX(-400px);
+}
+.wrapper.active-teacher .form-box-Choose{
+    transition: transform .18s ease;
+    transform: translateX(-800px);
+}
+
+/*-----------------------以下是老師註冊介面---------------------------------------------------------------*/
+
+.login-link3{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.login-link3 p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.login-link3 p a:hover{
+    text-decoration: underline;
+}
+.wrapper .form-box-Register-teacher{
+    position: absolute;
+    transform: none;
+    transform: translateX(1200px);
+}
+.wrapper.active .form-box-Register-teacher{
+    transition: transform .18s ease;
+    transform: translateX(800px);
+}
+.wrapper.active-student .form-box-Register-teacher{
+    transition: transform .18s ease;
+    transform: translateX(400px);
+}
+.wrapper.active-teacher .form-box-Register-teacher{
+    transition: transform .18s ease;
+    transform: translateX(0);
+}

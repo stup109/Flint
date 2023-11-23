@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <link rel = "stylesheet" href="index.css">
+    <title>Login Website</title>
+</head>
+<body>
+    <header>
+        <h2 class="logo">Logo</h2>
+        <nav class="navigation">
+            <!-- <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Test</a>
+            <a href="#">Other</a> -->
+            <button class="btnLogin">Login</button>
+        </nav>
+    </header>
+    <div class="text-box">
+        <h1 id="EngName">English Website</h1>
+    </div>
+    <div class="wrapper">
+        <span class="icon-close">
+            <ion-icon name="close-outline"></ion-icon>
+        </span>
+        <div class = "form-box-Login">
+            <div class = "form-value">
+                <form action = "">
+                    <h2>Login</h2>
+                    <div class = "inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="inputemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninput="checkEmail()" placeholder=" " required>
+                        <label for = "">Email</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" id="pwd" placeholder=" " required>
+                        <label for = "">Password</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="finger-print-outline"></ion-icon>
+                        <input type="text" placeholder=" " name="captcha" id="Cap" required>
+                        <label for = "captcha">Captcha: <span id="captcha"></span></label>
+                    </div>
+                    <div class="forget">
+                        <label for = ""><input type="checkbox">Remember Me <a href="#">Forget Password</a></label>
+                    </div>
+                    <div class="button" id="loginButton">
+                        <button onclick="validateCaptcha()">Login</button>
+                    </div>
+                    <div class="register-link">
+                        <p>Don't have an account <a href="#">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class = "form-box-Choose">
+            <div class = "form-value">
+                <form action = "">
+                    <div class="butteach">
+                        <button>Teacher</button>
+                    </div>
+                    <div class="butstud">
+                        <button>Student</button>
+                    </div>
+                    <div class="login-link">
+                        <p>Already have an account? <a href="#">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class = "form-box-Register">
+            <div class = "form-value">
+                <form action = "">
+                    <h2>Registration</h2>
+                    <div class = "inputbox">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <input type="name" placeholder=" " required>
+                        <label for = "">Username</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="inputemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninput="checkEmail()" placeholder=" " required>
+                        <label for = "">Email</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " required>
+                        <label for = "">Password</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" placeholder=" " required>
+                        <label for = "">Password Again</label>
+                    </div>
+                    <div class="forget">
+                        <label for = ""><input type="checkbox">I agree to the terms & conditions</label>
+                    </div>
+                    <div class="button" id="signup">
+                        <button>Sign Up</button>
+                    </div>
+                    <div class="login-link2">
+                        <p>Already have an account? <a href="#">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class = "form-box-Register-teacher">
+            <div class = "form-value">
+                <form action = "">
+                    <h2>Registration</h2>
+                    <div class = "inputbox">
+                        <ion-icon name="people-outline"></ion-icon>
+                        <input type="name" placeholder=" " required>
+                        <label for = "">Username</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" id="inputemail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" oninput="checkEmail()" placeholder=" " required>
+                        <label for = "">Email</label>
+                    </div>
+                    <div class = "inputbox">
+                        <ion-icon name="cloud-upload-outline"></ion-icon>
+                        <input type="password" placeholder=" " required>
+                        <label for = "">Upload</label>
+                    </div>
+                    <div class="button" id="signup">
+                        <button>Sign Up</button>
+                    </div>
+                    <div class="login-link3">
+                        <p>Already have an account? <a href="#">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
