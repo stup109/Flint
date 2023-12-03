@@ -60,5 +60,16 @@
             cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
             cp flint_cp/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
             rm -rf flint_cp
+            
+        - name: mysql setup 1
+          ansible.builtin.shell: |
+            firewall-cmd --zone=public --add-port=3306/tcp --permanent
+            firewall-cmd --reload
+            sed -i.bak '5s/#/skip-grant-tables\n#/' /etc/my.cnf
+            systemctl start mysqld.service
+            
+        - name: mysql setup 2
+          ansible.builtin.shell: |
+            sed -i '5s/skip-grant-tables/# skip-grant-tables/g' /etc/my.cnf
 
 ...
