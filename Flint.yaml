@@ -75,6 +75,7 @@
 
         - name: installation complete
           ansible.builtin.shell: |
+            python "{{ flint_path }}"/server/index.py
             firefox http://localhost:8080
             
 ...
