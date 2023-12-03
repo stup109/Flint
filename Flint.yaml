@@ -68,7 +68,7 @@
             firewall-cmd --reload
             sed -i.bak '5s/#/skip-grant-tables\n#/' "{{ mysql_cnf }}"
             
-        # - name: mysql setup - 2/2
-        #    sed -i 's/skip-grant-tables//g' "{{ mysql_cnf }}"
+        - name: mysql setup - 2/2
+            sed -i '5s/skip-grant-tables/# skip-grant-tables/g' "{{ mysql_cnf }}"
 
 ...
