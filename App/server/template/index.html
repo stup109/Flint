@@ -6,6 +6,34 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>Change Hostname</h1>
     
+    <form id="hostnameForm">
+        <label for="newHostname">Enter New Hostname:</label>
+        <input type="text" id="newHostname" name="newHostname" required>
+        <button type="button" onclick="changeHostname()">Change Hostname</button>
+    </form>
+    
+    <script>
+        function changeHostname() {
+            var newHostname = document.getElementById("newHostname").value;
+            
+            fetch('/change_hostname', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ hostname: newHostname }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error changing hostname. Please try again.');
+            });
+        }
+    </script>    
 </body>
 </html>
