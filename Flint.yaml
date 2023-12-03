@@ -5,7 +5,6 @@
   vars:
     nodejs_version: 21
     flint_path: "/root/Flint"
-    mysql_cnf: "/etc/my.cnf"
 
   tasks:
     - name: Installing Git
@@ -28,7 +27,7 @@
 
     - name: Installation
       block:
-        - name: installing nodejs, mysql, python3, pip
+        - name: installing mysql, python3, pip
           ansible.builtin.package:
             name:
               - python3
@@ -61,16 +60,5 @@
             cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
             cp flint_cp/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
             rm -rf flint_cp
-
-        - name: mysql setup - 1/2
-          ansible.builtin.shell: |
-            firewall-cmd --zone=public --add-port=3306/tcp --permanent
-            firewall-cmd --reload
-            sed -i.bak '5s/#/skip-grant-tables\n#/' "{{ mysql_cnf }}"
-            systemctl start mysqld.service
-            
-        - name: mysql setup - 2/2
-          ansible.builtin.shell: |
-            sed -i '5s/skip-grant-tables/# skip-grant-tables/g' "{{ mysql_cnf }}"
 
 ...
