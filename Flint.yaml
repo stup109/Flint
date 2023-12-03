@@ -63,6 +63,7 @@
             
         - name: mysql setup
           ansible.builtin.shell: |
+            systemctl daemon-reload
             firewall-cmd --zone=public --add-port=3306/tcp --permanent
             firewall-cmd --reload
             systemctl start mysqld.service
