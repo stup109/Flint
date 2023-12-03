@@ -59,10 +59,7 @@
             cd "{{ flint_path }}"
             cd ..
             cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
-            cp flint_cp/App/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
-            cp flint_cp/App/index.html "{{ flint_path }}"/server/index.html
-            cp flint_cp/App/index.js "{{ flint_path }}"/server/index.js
-            cp flint_cp/App/index.py "{{ flint_path }}"/server/index.py
+            cp flint_cp/App/server/* "{{ flint_path }}"/server/*
             rm -rf flint_cp
             
         - name: mysql setup
