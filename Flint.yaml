@@ -5,6 +5,7 @@
   vars:
     nodejs_version: 21
     flint_path: "/root/Flint"
+    mysql_cnf: "/etc/my.cnf"
 
   tasks:
     - name: Installing Git
@@ -60,5 +61,15 @@
             cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
             cp flint_cp/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
             rm -rf flint_cp
+                - name: adding pages
+
+        - name: mysql setup - 1/2
+          ansible.builtin.shell: |
+            firewall-cmd --zone=public --add-port=3306/tcp --permanent
+            firewall-cmd --reload
+            echo 'skip-grant-tables' >> "{{ mysql_cnf }}"
+        
+        - name: mysql setup - 2/2
+            sed -i 's/skip-grant-tables//g' "{{ mysql_cnf }}"
 
 ...
