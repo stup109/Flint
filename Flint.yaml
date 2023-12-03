@@ -61,7 +61,6 @@
             cp -rf flint_cp/App/web/src/* "{{ flint_path }}"/client/web/src/
             cp flint_cp/pyAPI.py "{{ flint_path }}"/server/pyAPI.py
             rm -rf flint_cp
-                - name: adding pages
 
         - name: mysql setup - 1/2
           ansible.builtin.shell: |
