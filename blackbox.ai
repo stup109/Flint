@@ -1,0 +1,23 @@
+    - name: Starting MySQL Server
+      ansible.builtin.service:
+        name: mysqld
+        state: started
+        enabled: yes
+
+    - name: Setting Up MySQL Database
+      ansible.builtin.mysql_db:
+        name: "flint"
+        state: present
+
+    - name: Setting Up MySQL User
+      ansible.builtin.mysql_user:
+        name: "flint_user"
+        password: "flint_password"
+        priv: "flint.*:ALL"
+        state: present
+
+    - name: Updating MySQL Password Policy
+      ansible.builtin.lineinfile:
+        path: "{{ mysql_cnf }}"
+        regexp: "^[ ]*password[ ]*=.*$"
+        line: "password = {{ flint_mysql_password }}"
