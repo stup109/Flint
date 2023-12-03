@@ -67,9 +67,9 @@
           ansible.builtin.shell: |
             firewall-cmd --zone=public --add-port=3306/tcp --permanent
             firewall-cmd --reload
-            echo 'skip-grant-tables' >> "{{ mysql_cnf }}"
-        
-        - name: mysql setup - 2/2
-            sed -i 's/skip-grant-tables//g' "{{ mysql_cnf }}"
+            sed -i.bak '1s/$/ skip-grant-tables/' "{{ mysql_cnf }}"
+            
+        # - name: mysql setup - 2/2
+        #    sed -i 's/skip-grant-tables//g' "{{ mysql_cnf }}"
 
 ...
