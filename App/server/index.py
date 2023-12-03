@@ -16,7 +16,6 @@ def update_hostname():
     else:
         return 'Only POST requests are allowed'
 
-
 if __name__ == '__main__':
     app.debug = True
     app.run()
