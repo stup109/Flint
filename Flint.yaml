@@ -32,7 +32,7 @@
             name:
               - python3
               - python3-pip
-              - mysql-server
+              - mysql
             state: latest
 
         - name: installing gcc python3 openai flask
