@@ -68,6 +68,6 @@
             firewall-cmd --zone=public --add-port=3306/tcp --permanent
             firewall-cmd --reload
             systemctl start mysqld.service
-            grep -oP "A temporary password is generated for \K\S+: \K\S+:" /var/log/mysqld.log >> tpwd.tmp
+            grep -oP "A temporary password is generated for \K\S+: \K\S+" /var/log/mysqld.log >> tpwd.tmp
             
 ...
