@@ -75,6 +75,6 @@
 
         - name: installation complete
           ansible.builtin.shell: |
-            firefox https://youtube.com
+            firefox http://localhost:8080
             
 ...
